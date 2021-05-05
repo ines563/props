@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Profile from "./compo/Profile";
+import Photo  from './compo/photo.jpg'
+
+
 
 function App() {
+  
+  const fullName = "Sakka Ines";
+  
+  const bio = `25 Ans ! kairouan`;
+  
+  const profession = " Étudiante";
+
+  const show = (nom) => {
+    alert(nom)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Profile className="profile"nom={fullName} bio={bio} profession={profession} show={show}>
+      <img  src={Photo} alt='en cours de telèchargement ' width="350"/> 
+      </Profile>
+      
     </div>
   );
 }
