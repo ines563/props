@@ -1,28 +1,55 @@
+import React, { Component } from "react";
 import "./App.css";
-import Profile from "./compo/Profile";
-import Photo  from './compo/photo.jpg'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "react-bootstrap";
 
+export class App extends Component {
+  state = {
+    FullName: "Sakka Ines",
+    Bio: "25 ans , kairouan",
+    Profession: "développeur",
+    imageSrc: "/photo.jpg",
+    show: false,
+    comp: 0,
+  };
 
+  handleShow = () => {
+    this.setState({ show: !this.state.show });
+  };
+  componentDidMount = () => {
+    setInterval(() => {
+      this.setState({ comp: this.state.comp + 1 });
+    }, 1000);
+  };
 
-function App() {
-  
-  const fullName = "Sakka Ines";
-  
-  const bio = `25 Ans ! kairouan`;
-  
-  const profession = " Étudiante";
-
-  const show = (nom) => {
-    alert(nom)
+  render() {
+    return (
+      <div className="div">
+        <Button
+          className="btn"
+          variant="outline-secondary"
+          onClick={this.handleShow}
+        >
+          {this.state.show ? "Hide" : "Show"}
+        </Button>
+        {this.state.show ? (
+          <div>
+            <h3>{this.state.comp}</h3>
+            <h1>{this.state.FullName}</h1>
+            <img
+              src={this.state.imageSrc}
+              alt={this.state.FullName}
+              className="pic"
+            />
+            <p>{this.state.Bio}</p>
+            <p>{this.state.Profession}</p>
+          </div>
+        ) : (
+          <h5>"clicker sur le button pour afficher le profile "</h5>
+        )}
+      </div>
+    );
   }
-  return (
-    <div className="App">
-      <Profile className="profile"nom={fullName} bio={bio} profession={profession} show={show}>
-      <img  src={Photo} alt='en cours de telèchargement ' width="350"/> 
-      </Profile>
-      
-    </div>
-  );
 }
 
 export default App;
